@@ -65,7 +65,6 @@ const Provider = sequelize.define("provider", {
         allowNull: false,
     },
 
-
     type: {
         type: DataTypes.STRING(100),
         defaultValue: 'curse_provided',
