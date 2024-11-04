@@ -69,7 +69,7 @@ const Provider = sequelize.define("provider", {
         type: DataTypes.STRING(100),
         defaultValue: 'curse_provided',
         validate: {
-            isIn: [['exam_provided', 'exam_provided']]
+            isIn: [['curse_provided', 'exam_provided']]
         }
     },
 

@@ -18,7 +18,7 @@ const Curse_level = sequelize.define('curse_level', {
 //     .then(() => {
 //         console.log('Modelo sincronizado correctamente');
 //         // Insertar los roles
-//         curse_level.bulkCreate([
+//         Curse_level.bulkCreate([
 //             { level: 'Base' },
 //             { level: 'Intermedio' },
 //             { level: 'Avanzado' }
@@ -34,7 +34,7 @@ const Curse_level = sequelize.define('curse_level', {
 //         console.error('Error al sincronizar el modelo:', error);
 //     })
 
-
+ 
 
 Curse_level.prototype.toJSON = function () {
     const values = { ...this.get() };
