@@ -20,6 +20,8 @@ class Server {
             providers: '/api/providers',
             roles: '/api/roles',
             users: '/api/users',
+            provinces: '/api/provinces',
+            municipalities: '/api/municipalities',
         }
 
         this.connectDB();
@@ -65,6 +67,8 @@ class Server {
         this.app.use(this.paths.providers, require('../routes/providers'));
         this.app.use(this.paths.roles, require('../routes/roles'));
         this.app.use(this.paths.users, require('../routes/users'));
+        this.app.use(this.paths.provinces, require('../routes/provinces'));
+        this.app.use(this.paths.municipalities, require('../routes/municipalities'));
     }
 
 

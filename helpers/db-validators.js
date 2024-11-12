@@ -1,10 +1,8 @@
 const { User } = require("../models/user");
 const { Role } = require("../models/role");
-// const { Certification } = require("../models/certification");
-// const { Reservation } = require("../models/reservation");
-// const { JobApplication } = require("../models/jobApplication");
-// const { Notification } = require("../models/notification");
-// const { User_certification } = require("../models/user_certification");
+const { Provider } = require("../models/provider");
+const { Curse } = require("../models/curse");
+const { Exam } = require("../models/exam");
 
 
 // todo--------------------------------------------------------------------------------------
@@ -42,34 +40,34 @@ const existUser = async (id = '') => {
 
 
 // todo--------------------------------------------------------------------------------------
-// todo------------------------------    exist certification   ------------------------------
+// todo------------------------------    exist provider   ------------------------------
 // todo--------------------------------------------------------------------------------------
-// const existCertification = async (id = '') => {
-//     const certification = await Certification.findByPk(id);
-//     if (!certification)
-//         throw new Error(`No existe la certificación con id ${id}`);
-// }
+const existProvider = async (id = '') => {
+    const provider = await Provider.findByPk(id);
+    if (!provider)
+        throw new Error(`No existe el proveedor con id ${id}`);
+}
 
 
 // todo--------------------------------------------------------------------------------------
-// todo------------------------------    exist reservation   --------------------------------
+// todo------------------------------    exist curse   --------------------------------
 // todo--------------------------------------------------------------------------------------
-// const existReservation = async (id = '') => {
-//     const reservation = await Reservation.findByPk(id);
-//     if (!reservation)
-//         throw new Error(`No existe la reservacion con id ${id}`);
-// }
+const existCurse = async (id = '') => {
+    const curse = await Curse.findByPk(id);
+    if (!curse)
+        throw new Error(`No existe el curso con id ${id}`);
+}
 
 
 
 // todo--------------------------------------------------------------------------------------
-// todo------------------------------    exist jobApplication   -----------------------------
+// todo------------------------------    exist exam   -----------------------------
 // todo--------------------------------------------------------------------------------------
-// const existJobApplication = async (id = '') => {
-//     const jobApplication = await JobApplication.findByPk(id);
-//     if (!jobApplication)
-//         throw new Error(`No existe la solicitud de trabajo con id ${id}`);
-// }
+const existExam = async (id = '') => {
+    const exam = await Exam.findByPk(id);
+    if (!exam)
+        throw new Error(`No existe el exámen con id ${id}`);
+}
 
 
 // todo--------------------------------------------------------------------------------------
@@ -135,6 +133,9 @@ module.exports = {
     isRoleValid,
     existEmail,
     existUser,
+    existProvider,
+    existCurse,
+    existExam
     // existCertification,
     // existReservation,
     // existJobApplication,
