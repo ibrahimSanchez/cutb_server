@@ -3,6 +3,7 @@ const { Role } = require("../models/role");
 const { Provider } = require("../models/provider");
 const { Curse } = require("../models/curse");
 const { Exam } = require("../models/exam");
+const { Curse_level } = require("../models/curse_level");
 
 
 // todo--------------------------------------------------------------------------------------
@@ -40,7 +41,7 @@ const existUser = async (id = '') => {
 
 
 // todo--------------------------------------------------------------------------------------
-// todo------------------------------    exist provider   ------------------------------
+// todo------------------------------    exist provider   -----------------------------------
 // todo--------------------------------------------------------------------------------------
 const existProvider = async (id = '') => {
     const provider = await Provider.findByPk(id);
@@ -50,7 +51,7 @@ const existProvider = async (id = '') => {
 
 
 // todo--------------------------------------------------------------------------------------
-// todo------------------------------    exist curse   --------------------------------
+// todo------------------------------    exist curse   --------------------------------------
 // todo--------------------------------------------------------------------------------------
 const existCurse = async (id = '') => {
     const curse = await Curse.findByPk(id);
@@ -59,9 +60,19 @@ const existCurse = async (id = '') => {
 }
 
 
+// todo--------------------------------------------------------------------------------------
+// todo------------------------------    exist curse_level   --------------------------------
+// todo--------------------------------------------------------------------------------------
+const existCurse_level = async (id = '') => {
+    const curse_level = await Curse_level.findByPk(id);
+    if (!curse_level)
+        throw new Error(`No existe el nivel de curso con id ${id}`);
+}
+
+
 
 // todo--------------------------------------------------------------------------------------
-// todo------------------------------    exist exam   -----------------------------
+// todo------------------------------    exist exam   ---------------------------------------
 // todo--------------------------------------------------------------------------------------
 const existExam = async (id = '') => {
     const exam = await Exam.findByPk(id);
@@ -71,14 +82,25 @@ const existExam = async (id = '') => {
 
 
 // todo--------------------------------------------------------------------------------------
-// todo------------------------------    exist jobApplication   -----------------------------
+// todo------------------------------    exist userName   -----------------------------------
 // todo--------------------------------------------------------------------------------------
-// const existNotification = async (id = '') => {
-//     const notification = await Notification.findByPk(id);
-//     if (!notification)
-//         throw new Error(`No existe la notificación con id ${id}`);
-// }
+const existUserName = async (userName = '') => {
+    const exist = await User.findAll({ where: { userName } });
 
+    if (exist.length === 0)
+        throw new Error(`No existe el usuario ${userName}`);
+}
+
+
+// todo--------------------------------------------------------------------------------------
+// todo------------------------------    exist userName   -----------------------------------
+// todo--------------------------------------------------------------------------------------
+const existUserNameAuth = async (userName = '') => {
+    const exist = await User.findAll({ where: { userName } });
+
+    if (exist.length === 1)
+        throw new Error(`Ya el usuario ${userName} existe`);
+}
 
 
 
@@ -135,7 +157,10 @@ module.exports = {
     existUser,
     existProvider,
     existCurse,
-    existExam
+    existExam,
+    existCurse_level,
+    existUserName,
+    existUserNameAuth
     // existCertification,
     // existReservation,
     // existJobApplication,

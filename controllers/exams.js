@@ -23,7 +23,7 @@ const examGet = async (req, res) => {
             const exams = await Exam.findAll({
                 where: { state: true, providerId: providerId }
             });
-            res.json({
+            res.json({ 
                 exams
             });
         }

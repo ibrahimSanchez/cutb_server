@@ -7,22 +7,22 @@ const { createJWT } = require('../helpers/index');
 
 const login = async (req = request, res = response) => {
 
-    const { email, password } = req.body;
+    const { userName, password } = req.body;
 
     try {
 
-        const user = await User.findOne({ where: { email } });
+        const user = await User.findOne({ where: { userName } });
 
-        // verificar email
+        // verificar userName
         if (!user)
             return res.status(400).json({
-                msg: 'Email o password incorrectos'
+                msg: 'Usuario o password incorrectos'
             });
 
         // usuario activo
         if (!user.state)
             return res.status(400).json({
-                msg: 'Email o password incorrectos'
+                msg: 'Usuario o password incorrectos'
             });
 
         // verificar password
@@ -30,7 +30,7 @@ const login = async (req = request, res = response) => {
 
         if (!validPassword)
             return res.status(400).json({
-                msg: 'Email o password incorrectos'
+                msg: 'Usuario o password incorrectos'
             });
 
         // generar el jwt 

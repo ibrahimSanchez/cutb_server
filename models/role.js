@@ -20,8 +20,7 @@ const Role = sequelize.define('role', {
 //         // Insertar los roles
 //         Role.bulkCreate([
 //             { role: 'ADMIN_ROLE' },
-//             { role: 'USER_ROLE' },
-//             { role: 'PROFESOR_ROLE' }
+//             { role: 'ACTIVITY_MANAGER_ROLE' },
 //         ])
 //             .then(() => {
 //                 console.log('Roles insertados con éxito');

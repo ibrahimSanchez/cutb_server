@@ -36,6 +36,27 @@ const curseGet = async (req, res) => {
 }
 
 
+// todo--------------------------------------------------------------------------------------
+// todo-------------------------------    get by id   ---------------------------------------
+// todo--------------------------------------------------------------------------------------
+const getCurseById = async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        const curse = await Curse.findByPk(id)
+
+        res.json({
+            curse
+        });
+    } catch (error) {
+        // console.log(error);
+        res.status(400).json({
+            msg: 'Error al optener datos'
+        });
+    }
+}
+
 
 // todo--------------------------------------------------------------------------------------
 // todo------------------------------    post   ---------------------------------------------
@@ -115,7 +136,7 @@ const cursePut = async (req = request, res = response) => {
         if (!curse) {
             return res.status(404).json({ msg: 'Curso no encontrado' });
         }
-        
+
         Object.assign(curse, rest);
         await curse.save();
 
@@ -177,6 +198,7 @@ const curseDelete = async (req = request, res = response) => {
 
 module.exports = {
     curseGet,
+    getCurseById,
     cursePost,
     cursePut,
     curseDelete

@@ -3,7 +3,8 @@ const {
     curseGet,
     cursePost,
     cursePut,
-    curseDelete
+    curseDelete,
+    getCurseById
 } = require('../controllers/index');
 const { existCurse } = require('../helpers/db-validators');
 const { check } = require('express-validator');
@@ -17,6 +18,15 @@ const router = Router();
 // todo------------------------------    get   ----------------------------------------------
 // todo--------------------------------------------------------------------------------------
 router.get('/', curseGet);
+
+
+// todo--------------------------------------------------------------------------------------
+// todo------------------------------    get by id   ----------------------------------------------
+// todo--------------------------------------------------------------------------------------
+router.get('/:id', [
+    check('id').custom(existCurse),
+    validateFields
+], getCurseById);
 
 
 
@@ -64,7 +74,7 @@ router.delete('/:id', [
 
 
 
-  
+
 
 module.exports = router;
 

@@ -56,8 +56,8 @@ const getUserById = async (req, res) => {
 // todo--------------------------------------------------------------------------------------
 const usersPost = async (req = request, res = response) => {
 
-    const { name, email, password, role, ci, municipalityId, provinceId } = req.body;
-    const user = new User({ name, email, password, role, ci, municipalityId, provinceId });
+    const { name, userName, phone, password, role } = req.body;
+    const user = new User({ name, userName, phone, password, role });
 
     const salt = bcrypt.genSaltSync(10);
     user.password = bcrypt.hashSync(password, salt);

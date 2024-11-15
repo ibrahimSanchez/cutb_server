@@ -23,6 +23,28 @@ const providerGet = async (req, res) => {
 
 
 
+// todo--------------------------------------------------------------------------------------
+// todo-------------------------------    get by id   ---------------------------------------
+// todo--------------------------------------------------------------------------------------
+const getProviderById = async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        const provider = await Provider.findByPk(id)
+
+        res.json({
+            provider
+        });
+    } catch (error) {
+        // console.log(error);
+        res.status(400).json({
+            msg: 'Error al optener datos'
+        });
+    }
+}
+
+
 
 // todo--------------------------------------------------------------------------------------
 // todo------------------------------    post   ---------------------------------------------
@@ -105,6 +127,7 @@ const providerDelete = async (req = request, res = response) => {
 
 module.exports = {
     providerGet,
+    getProviderById,
     providerPost,
     providerPut,
     providerDelete

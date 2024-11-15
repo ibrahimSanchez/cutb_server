@@ -10,36 +10,32 @@ const User = sequelize.define("user", {
         primaryKey: true
     },
 
-    ci: {
-        type: DataTypes.STRING(11),
-        allowNull: false,
-        unique: true,
-    },
-
     name: {
         type: DataTypes.STRING(100),
         allowNull: false
     },
 
-    email: {
-        type: DataTypes.STRING,
+    userName: {
+        type: DataTypes.STRING(100),
         allowNull: false,
-        unique: true,
-        validate: {
-            isEmail: true
-        }
+        unique: true
     },
+
+    phone: {
+        type: DataTypes.STRING(11),
+        allowNull: false,
+    },
+
     password: {
         type: DataTypes.STRING(100),
         allowNull: false,
-
     },
 
     role: {
         type: DataTypes.STRING(100),
         allowNull: false,
         validate: {
-            isIn: [['ADMIN_ROLE', 'USER_ROLE', 'PROFESOR_ROLE']]
+            isIn: [['ADMIN_ROLE', 'ACTIVITY_MANAGER_ROLE']]
         }
     },
 
@@ -48,11 +44,6 @@ const User = sequelize.define("user", {
         defaultValue: true
     }
 });
-
-
-// // Relacion con otras tablas
-// User.belongsTo(Province, { foreignKey: 'provinceId' });
-// User.belongsTo(Municipality, { foreignKey: 'municipalityId' });
 
 
 
