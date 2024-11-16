@@ -40,7 +40,11 @@ const Curse = sequelize.define("curse", {
             isEmail: true
         }
     },
-
+    
+    approved: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
 
     state: {
         type: DataTypes.BOOLEAN,

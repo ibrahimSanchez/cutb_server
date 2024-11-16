@@ -30,7 +30,11 @@ const Exam = sequelize.define("exam", {
             isEmail: true
         }
     },
-
+    
+    approved: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
 
     state: {
         type: DataTypes.BOOLEAN,

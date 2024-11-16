@@ -9,6 +9,8 @@ class Server {
         this.port = process.env.PORT;
 
         this.paths = {
+            approveCurse: '/api/approveCurse',
+            approveExam: '/api/approveExam',
             auth: '/api/auth',
             streams: '/api/streams',
             exams: '/api/exams',
@@ -56,7 +58,7 @@ class Server {
 
     routes() {
         this.app.use(this.paths.auth, require('../routes/auth'));
-
+        
         this.app.use(this.paths.streams, require('../routes/streams'));
         this.app.use(this.paths.exams, require('../routes/exams'));
         this.app.use(this.paths.curses, require('../routes/curses'));
@@ -69,6 +71,8 @@ class Server {
         this.app.use(this.paths.users, require('../routes/users'));
         this.app.use(this.paths.provinces, require('../routes/provinces'));
         this.app.use(this.paths.municipalities, require('../routes/municipalities'));
+        this.app.use(this.paths.approveCurse, require('../routes/approveCurse'));
+        this.app.use(this.paths.approveExam, require('../routes/approveExam'));
     }
 
 

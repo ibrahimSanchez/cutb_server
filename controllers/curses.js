@@ -196,10 +196,51 @@ const curseDelete = async (req = request, res = response) => {
 
 
 
+
+
+
+
+
+
+// todo--------------------------------------------------------------------------------------
+// todo------------------------------    approveCurse   -------------------------------------
+// todo--------------------------------------------------------------------------------------
+const approveCurse = async (req = request, res = response) => {
+    const { id } = req.params;
+    const { id: i, ...rest } = req.body;
+
+    try {
+        // Buscar y actualizar el curso
+        const curse = await Curse.findByPk(id);
+        if (!curse) {
+            return res.status(404).json({ msg: 'Curso no encontrado' });
+        }
+
+        Object.assign(curse, rest);
+        await curse.save();
+
+        res.json({
+            msg: 'Operación exitosa',
+            curse
+        });
+    } catch (error) {
+        console.error('Error en la operación:', error);
+        res.status(500).json({ msg: 'Error en la operación', error: error.message });
+    }
+};
+
+
+
+
+
+
+
+
 module.exports = {
     curseGet,
     getCurseById,
     cursePost,
     cursePut,
-    curseDelete
+    curseDelete,
+    approveCurse
 };

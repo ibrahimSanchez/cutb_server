@@ -23,7 +23,7 @@ const examGet = async (req, res) => {
             const exams = await Exam.findAll({
                 where: { state: true, providerId: providerId }
             });
-            res.json({ 
+            res.json({
                 exams
             });
         }
@@ -172,11 +172,39 @@ const examDelete = async (req = request, res = response) => {
 }
 
 
+// todo--------------------------------------------------------------------------------------
+// todo------------------------------    approveExam   --------------------------------------
+// todo--------------------------------------------------------------------------------------
+const approveExam = async (req = request, res = response) => {
+    const { id } = req.params;
+    const { id: i, ...rest } = req.body;
+
+    try {
+        // Buscar y actualizar el examen
+        const exam = await Exam.findByPk(id);
+        if (!exam) {
+            return res.status(404).json({ msg: 'Examen no encontrado' });
+        }
+
+        Object.assign(exam, rest);
+        await exam.save();
+
+        res.json({
+            msg: 'Operación exitosa',
+            exam
+        });
+    } catch (error) {
+        console.error('Error en la operación:', error);
+        res.status(500).json({ msg: 'Error en la operación', error: error.message });
+    }
+};
+
 
 
 module.exports = {
     examGet,
     examPost,
     examPut,
-    examDelete
+    examDelete,
+    approveExam
 };
