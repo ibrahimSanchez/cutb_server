@@ -8,6 +8,7 @@ const {
 const { validateFields } = require('../middlewares/validate-fields');
 const { check } = require('express-validator');
 const { existProvider } = require('../helpers/db-validators');
+const { isAdminRole, validateJWT } = require('../middlewares');
 
 
 
@@ -33,9 +34,8 @@ router.get('/', [
 // todo------------------------------    post   ---------------------------------------------
 // todo--------------------------------------------------------------------------------------
 router.post('/', [
-    // validateJWT,
-    // isProfesorRole,
-    // hasRole('PROFESOR_ROLE'),
+    validateJWT,
+    isAdminRole,
     check('name', 'El campo "name" es requerido').not().isEmpty(),
     check('email', 'El campo "email" es requerido').not().isEmpty(),
     check('address', 'El campo "address" es requerido').not().isEmpty(),
@@ -55,9 +55,8 @@ router.post('/', [
 // todo------------------------------    put   ----------------------------------------------
 // todo--------------------------------------------------------------------------------------
 router.put('/:id', [
-    // validateJWT,
-    // isProfesorRole,
-    // hasRole('PROFESOR_ROLE'),
+    validateJWT,
+    isAdminRole,
     check('id').custom(existProvider),
     validateFields
 ], providerPut);
@@ -67,9 +66,8 @@ router.put('/:id', [
 // todo------------------------------    delete   -------------------------------------------
 // todo--------------------------------------------------------------------------------------
 router.delete('/:id', [
-    // validateJWT,
-    // isProfesorRole,
-    // hasRole('PROFESOR_ROLE'),
+    validateJWT,
+    isAdminRole,
     check('id').custom(existProvider),
     validateFields
 ], providerDelete);

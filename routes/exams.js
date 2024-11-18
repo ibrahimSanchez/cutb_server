@@ -8,6 +8,7 @@ const {
 const { existExam } = require('../helpers/db-validators');
 const { validateFields } = require('../middlewares/validate-fields');
 const { check } = require('express-validator');
+const { isActivityManagerRole, validateJWT } = require('../middlewares');
 
 
 
@@ -24,9 +25,8 @@ router.get('/', examGet);
 // todo------------------------------    post   ---------------------------------------------
 // todo--------------------------------------------------------------------------------------
 router.post('/', [
-    // validateJWT,
-    // isProfesorRole,
-    // hasRole('PROFESOR_ROLE'),
+    validateJWT,
+    isActivityManagerRole,
     check('topic', 'El campo "topic" es requerido').not().isEmpty(),
     check('prise', 'El campo "prise" es requerido').not().isEmpty(),
     check('email', 'El campo "email" es requerido').not().isEmpty(),
@@ -41,9 +41,8 @@ router.post('/', [
 // todo------------------------------    put   ----------------------------------------------
 // todo--------------------------------------------------------------------------------------
 router.put('/:id', [
-    // validateJWT,
-    // isProfesorRole,
-    // hasRole('PROFESOR_ROLE'),
+    validateJWT,
+    isActivityManagerRole,
     check('id').custom(existExam),
     validateFields
 ], examPut);
@@ -53,9 +52,8 @@ router.put('/:id', [
 // todo------------------------------    delete   -------------------------------------------
 // todo--------------------------------------------------------------------------------------
 router.delete('/:id', [
-    // validateJWT,
-    // isProfesorRole,
-    // hasRole('PROFESOR_ROLE'),
+    validateJWT,
+    isActivityManagerRole,
     check('id').custom(existExam),
     validateFields
 ], examDelete);

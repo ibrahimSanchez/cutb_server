@@ -18,8 +18,8 @@ module.exports = router;
 // todo------------------------------    approveExam   -------------------------------------
 // todo--------------------------------------------------------------------------------------
 router.put('/:id', [
-    // validateJWT,
-    // isAdminRole,
+    validateJWT,
+    isAdminRole,
     check('id').custom(existExam),
     validateFields
 ], approveExam);

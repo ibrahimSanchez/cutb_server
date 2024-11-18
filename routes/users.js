@@ -1,18 +1,18 @@
 const { check } = require('express-validator');
 const { Router } = require('express');
 
-const { validateFields, validateJWT, isAdminRole, hasRole } = require('../middlewares/index');
+// const { validateFields, validateJWT, isAdminRole, hasRole } = require('../middlewares/index');
 
 const {
     usersGet,
     usersPost,
-    // usersPut,
-    // usersPost,
-    // usersDelete,
-    // getUserById,
-    // usersArrayDelete
+    usersPut,
+    usersDelete,
 } = require('../controllers/index');
-const { isRoleValid, existUserNameAuth } = require('../helpers/db-validators');
+const { isRoleValid, existUserNameAuth, existUser } = require('../helpers/db-validators');
+const { validateJWT } = require('../middlewares/validate-jwt');
+const { isAdminRole } = require('../middlewares/validate-role');
+const { validateFields } = require('../middlewares');
 
 
 
@@ -21,7 +21,11 @@ const router = Router();
 // todo--------------------------------------------------------------------------------------
 // todo------------------------------    get   ----------------------------------------------
 // todo--------------------------------------------------------------------------------------
-router.get('/', usersGet);
+router.get('/', [
+    validateJWT,
+    isAdminRole,
+    validateFields
+], usersGet);
 
 
 
@@ -50,29 +54,27 @@ router.post('/', [
 ], usersPost);
 
 
-// // todo--------------------------------------------------------------------------------------
-// // todo------------------------------    put   ----------------------------------------------
-// // todo--------------------------------------------------------------------------------------
-// router.put('/:id', [
-//     validateJWT,
-//     isAdminRole,
-//     hasRole('ADMIN_ROLE'),
-//     check('id').custom(existUser),
-//     check('role').custom(isRoleValid),
-//     validateFields
-// ], usersPut);
+// todo--------------------------------------------------------------------------------------
+// todo------------------------------    put   ----------------------------------------------
+// todo--------------------------------------------------------------------------------------
+router.put('/:id', [
+    validateJWT,
+    isAdminRole,
+    check('id').custom(existUser),
+    check('role').custom(isRoleValid),
+    validateFields
+], usersPut);
 
-
-// // todo--------------------------------------------------------------------------------------
-// // todo------------------------------    delete   -------------------------------------------
-// // todo--------------------------------------------------------------------------------------
-// router.delete('/:id', [
-//     validateJWT,
-//     isAdminRole,
-//     hasRole('ADMIN_ROLE'),
-//     check('id').custom(existUser),
-//     validateFields
-// ], usersDelete);
+ 
+// todo--------------------------------------------------------------------------------------
+// todo------------------------------    delete   -------------------------------------------
+// todo--------------------------------------------------------------------------------------
+router.delete('/:id', [
+    validateJWT,
+    isAdminRole,
+    check('id').custom(existUser),
+    validateFields
+], usersDelete);
 
 
 // // todo--------------------------------------------------------------------------------------

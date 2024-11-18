@@ -17,8 +17,8 @@ module.exports = router;
 // todo------------------------------    approveCurse   -------------------------------------
 // todo--------------------------------------------------------------------------------------
 router.put('/:id', [
-    // validateJWT,
-    // isAdminRole,
+    validateJWT,
+    isAdminRole,
     check('id').custom(existCurse),
     validateFields
 ], approveCurse);
