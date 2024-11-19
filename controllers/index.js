@@ -9,6 +9,7 @@ const examsController = require('./exams');
 const languagesController = require('./languages');
 const providersController = require('./providers');
 const certification_record = require('./certification_record');
+const news = require('./news');
 
 
 
@@ -23,5 +24,6 @@ module.exports = {
     ...examsController,
     ...languagesController,
     ...providersController,
-    ...certification_record
+    ...certification_record,
+    ...news
 }

@@ -6,6 +6,7 @@ const { Exam } = require("../models/exam");
 const { Curse_level } = require("../models/curse_level");
 const { Certification_record } = require("../models/certification_record");
 const { Membership_provider_request } = require("../models/membership_provider_request");
+const { News } = require("../models/news");
 
 
 // todo--------------------------------------------------------------------------------------
@@ -80,6 +81,16 @@ const existExam = async (id = '') => {
     const exam = await Exam.findByPk(id);
     if (!exam)
         throw new Error(`No existe el exámen con id ${id}`);
+}
+
+
+// todo--------------------------------------------------------------------------------------
+// todo------------------------------    exist news   ---------------------------------------
+// todo--------------------------------------------------------------------------------------
+const existNews = async (id = '') => {
+    const news = await News.findByPk(id);
+    if (!news)
+        throw new Error(`No existe la noticia con id ${id}`);
 }
 
 
@@ -164,7 +175,8 @@ module.exports = {
     existUserName,
     existUserNameAuth,
     existCertification_record,
-    existMembership_provider_request
+    existMembership_provider_request,
+    existNews
     // existCertification,
     // existReservation,
     // existJobApplication,
