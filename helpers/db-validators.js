@@ -5,6 +5,7 @@ const { Curse } = require("../models/curse");
 const { Exam } = require("../models/exam");
 const { Curse_level } = require("../models/curse_level");
 const { Certification_record } = require("../models/certification_record");
+const { Membership_provider_request } = require("../models/membership_provider_request");
 
 
 // todo--------------------------------------------------------------------------------------
@@ -121,14 +122,14 @@ const existCertification_record = async (id = '') => {
 
 
 // todo--------------------------------------------------------------------------------------
-// todo------------------------------    exist ci   -----------------------------------------
+// todo------------------------------    exist existMembership_provider_request   -----------
 // todo--------------------------------------------------------------------------------------
-// const existCi = async (ci = '') => {
-//     const exist = await User.findAll({ where: { ci } });
+const existMembership_provider_request = async (id = '') => {
+    const exist = await Membership_provider_request.findAll({ where: { id } });
 
-//     if (exist.length > 0)
-//         throw new Error(`El email: ${ci} ya esta registrado`)
-// }
+    if (!exist)
+        throw new Error(`Los datos no están almacenados en la base de datos`)
+}
 
 
 
@@ -162,7 +163,8 @@ module.exports = {
     existCurse_level,
     existUserName,
     existUserNameAuth,
-    existCertification_record
+    existCertification_record,
+    existMembership_provider_request
     // existCertification,
     // existReservation,
     // existJobApplication,

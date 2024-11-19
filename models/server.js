@@ -25,6 +25,7 @@ class Server {
             provinces: '/api/provinces',
             municipalities: '/api/municipalities',
             certification_record: '/api/certification_records',
+            membership_provider_request: '/api/membership_provider_requests',
         }
 
         this.connectDB();
@@ -75,6 +76,7 @@ class Server {
         this.app.use(this.paths.approveCurse, require('../routes/approveCurse'));
         this.app.use(this.paths.approveExam, require('../routes/approveExam'));
         this.app.use(this.paths.certification_record, require('../routes/certification_record'));
+        this.app.use(this.paths.membership_provider_request, require('../routes/membership_provider_request'));
     }
 
 
