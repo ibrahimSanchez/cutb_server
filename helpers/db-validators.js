@@ -4,6 +4,7 @@ const { Provider } = require("../models/provider");
 const { Curse } = require("../models/curse");
 const { Exam } = require("../models/exam");
 const { Curse_level } = require("../models/curse_level");
+const { Certification_record } = require("../models/certification_record");
 
 
 // todo--------------------------------------------------------------------------------------
@@ -105,13 +106,13 @@ const existUserNameAuth = async (userName = '') => {
 
 
 // todo--------------------------------------------------------------------------------------
-// todo------------------------------    exist user_certification   -------------------------
+// todo------------------------------    exist Certification_record   -----------------------
 // todo--------------------------------------------------------------------------------------
-// const existUser_certification = async (id = '') => {
-//     const user_certification = await User_certification.findByPk(id);
-//     if (!user_certification)
-//         throw new Error(`No existe la notificación con id ${id}`);
-// }
+const existCertification_record = async (id = '') => {
+    const certification_record = await Certification_record.findByPk(id);
+    if (!certification_record)
+        throw new Error(`Los datos no están almacenados en la base de datos`);
+}
 
 
 
@@ -160,7 +161,8 @@ module.exports = {
     existExam,
     existCurse_level,
     existUserName,
-    existUserNameAuth
+    existUserNameAuth,
+    existCertification_record
     // existCertification,
     // existReservation,
     // existJobApplication,
