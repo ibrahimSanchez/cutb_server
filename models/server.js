@@ -22,8 +22,6 @@ class Server {
             providers: '/api/providers',
             roles: '/api/roles',
             users: '/api/users',
-            provinces: '/api/provinces',
-            municipalities: '/api/municipalities',
             certification_record: '/api/certification_records',
             membership_provider_request: '/api/membership_provider_requests',
             news: '/api/news',
@@ -61,7 +59,7 @@ class Server {
 
     routes() {
         this.app.use(this.paths.auth, require('../routes/auth'));
-        
+
         this.app.use(this.paths.streams, require('../routes/streams'));
         this.app.use(this.paths.exams, require('../routes/exams'));
         this.app.use(this.paths.curses, require('../routes/curses'));
@@ -72,8 +70,6 @@ class Server {
         this.app.use(this.paths.providers, require('../routes/providers'));
         this.app.use(this.paths.roles, require('../routes/roles'));
         this.app.use(this.paths.users, require('../routes/users'));
-        this.app.use(this.paths.provinces, require('../routes/provinces'));
-        this.app.use(this.paths.municipalities, require('../routes/municipalities'));
         this.app.use(this.paths.approveCurse, require('../routes/approveCurse'));
         this.app.use(this.paths.approveExam, require('../routes/approveExam'));
         this.app.use(this.paths.certification_record, require('../routes/certification_record'));
